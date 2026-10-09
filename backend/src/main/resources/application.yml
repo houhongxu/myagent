@@ -1,0 +1,26 @@
+server:
+  address: ${AGENT_HOST:127.0.0.1}
+  port: ${AGENT_PORT:8080}
+spring:
+  application:
+    name: myagent
+  config:
+    import: "optional:file:../.env[.properties],optional:file:./.env[.properties]"
+  sql:
+    init:
+      mode: always
+  mvc:
+    async:
+      request-timeout: 130000
+agent:
+  api-key: ${AGENT_API_KEY:}
+  base-url: ${AGENT_BASE_URL:https://api.openai.com}
+  completions-path: ${AGENT_COMPLETIONS_PATH:/v1/chat/completions}
+  model: ${AGENT_MODEL:gpt-4o-mini}
+  reasoning-effort: ${AGENT_REASONING_EFFORT:}
+  db-path: ${AGENT_DB_PATH:./data/agent.db}
+  max-tokens: 2048
+  max-tool-calls: 6
+  history-turns: 8
+  timeout-seconds: ${AGENT_TIMEOUT_SECONDS:120}
+  max-concurrent-streams: 4
